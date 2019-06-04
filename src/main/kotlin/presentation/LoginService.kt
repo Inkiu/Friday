@@ -1,19 +1,18 @@
-package data.repo
+package presentation
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import data.api.AuthApi
 import data.api.OAuthApi
 import data.model.Auth
 import domain.model.Token
+import kotlinx.coroutines.delay
 import java.io.File
 import java.lang.IllegalStateException
 
-class AuthRepository(
+class LoginService(
     private val oauthApi: OAuthApi,
-    private val authApi: AuthApi
+    private val authFilePath: String
 ) {
-
     suspend fun botLogin(): Token {
         val auth = getAuth() ?: throw IllegalStateException("can not make auth")
         return oauthApi.login(
@@ -25,11 +24,10 @@ class AuthRepository(
         ).await()
     }
 
-    private suspend fun getAuth(): Auth? {
-        val authJson = File("src/main/resources/auth/teamup_auth.json").readText()
+    private fun getAuth(): Auth? {
+        val authJson = File(authFilePath).readText()
         return Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
             .adapter(Auth::class.java)
             .fromJson(authJson)
     }
-
 }
