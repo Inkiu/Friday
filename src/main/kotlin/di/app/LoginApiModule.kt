@@ -4,6 +4,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
+import data.TokenProvider
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -13,11 +14,16 @@ import data.api.BaseUrl
 import data.api.OAuthApi
 
 @Module
-class ApiModule {
+class LoginApiModule {
 
     @Provides
     fun provideAuthApi(baseUrl: BaseUrl): OAuthApi {
         return createRetrofit(baseUrl = baseUrl.auth, timeout = 10L).create(OAuthApi::class.java)
+    }
+
+    @Provides
+    fun provideTokenProvider(): TokenProvider {
+        return TokenProvider()
     }
 
     private fun createRetrofit(baseUrl: String, timeout: Long): Retrofit {

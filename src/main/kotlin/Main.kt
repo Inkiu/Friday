@@ -1,5 +1,4 @@
 import app.App
-import di.app.DaggerLoginComponent
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 

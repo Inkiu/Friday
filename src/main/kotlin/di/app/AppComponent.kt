@@ -7,7 +7,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [
     ConfigModule::class,
-    ApiModule::class,
+    LoginApiModule::class,
     AppModule::class
 ])
 interface AppComponent {

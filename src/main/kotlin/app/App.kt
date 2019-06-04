@@ -2,12 +2,11 @@ package app
 
 import di.app.AppComponent
 import activity.LoginActivity
-import di.app.DaggerLoginComponent
-import sun.tools.jstat.Token
+import di.app.DaggerAppComponent
 import javax.inject.Inject
 
 class App : Phase {
-    val appComponent: AppComponent = DaggerLoginComponent.builder().build()
+    val appComponent: AppComponent = DaggerAppComponent.builder().build()
 
     @Inject lateinit var loginActivity: LoginActivity
 
