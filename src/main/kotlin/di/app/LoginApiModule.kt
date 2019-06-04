@@ -12,16 +12,19 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import data.api.BaseUrl
 import data.api.OAuthApi
+import javax.inject.Singleton
 
 @Module
 class LoginApiModule {
 
     @Provides
+    @Singleton
     fun provideAuthApi(baseUrl: BaseUrl): OAuthApi {
         return createRetrofit(baseUrl = baseUrl.auth, timeout = 10L).create(OAuthApi::class.java)
     }
 
     @Provides
+    @Singleton
     fun provideTokenProvider(): TokenProvider {
         return TokenProvider()
     }

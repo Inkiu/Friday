@@ -20,6 +20,7 @@ class LoginActivity @Inject constructor(
             val token = service.botLogin()
             tokenProvider.registerToken(token)
             println(token)
+            app.startBotActivity()
         }
     }
 
