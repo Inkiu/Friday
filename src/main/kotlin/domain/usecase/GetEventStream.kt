@@ -17,7 +17,7 @@ class GetEventStream @Inject constructor(
         return scope.produce {
             while(isActive) {
                 val result = runCatching {
-                    eventRepository.getEvents().forEach { event ->
+                    eventRepository.getEvents().events.forEach { event ->
                         if (event.isChat()) {
                             println(event)
                             send(event.chatEvent!!)

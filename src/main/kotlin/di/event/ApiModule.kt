@@ -53,7 +53,7 @@ class ApiModule {
     private fun createRetrofit(baseUrl: String, timeout: Long, authenticator: TokenAuthenticator): Retrofit {
         val logging = HttpLoggingInterceptor {
             println("Retrofit : $it")
-        }.apply { level = HttpLoggingInterceptor.Level.BASIC }
+        }.apply { level = HttpLoggingInterceptor.Level.BODY }
 
         val httpClientBuilder = OkHttpClient.Builder()
             .addInterceptor(logging)

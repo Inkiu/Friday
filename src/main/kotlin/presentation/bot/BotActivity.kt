@@ -23,7 +23,7 @@ class BotActivity(
     override fun start() {
         launch {
             val channel = getEventStream.get(CoroutineScope(coroutineContext))
-            while(true) println(channel.receive())
+            while(true) println("Received " + channel.receive())
         }
     }
 
