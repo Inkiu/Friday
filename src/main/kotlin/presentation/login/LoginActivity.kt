@@ -1,10 +1,9 @@
-package activity
+package presentation.login
 
 import app.App
 import app.Phase
 import data.TokenProvider
 import kotlinx.coroutines.*
-import presentation.LoginService
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 

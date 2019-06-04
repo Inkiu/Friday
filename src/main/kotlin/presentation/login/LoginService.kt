@@ -1,11 +1,10 @@
-package presentation
+package presentation.login
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import data.api.OAuthApi
 import data.model.Auth
 import domain.model.Token
-import kotlinx.coroutines.delay
 import java.io.File
 import java.lang.IllegalStateException
 

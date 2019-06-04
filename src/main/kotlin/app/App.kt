@@ -1,7 +1,7 @@
 package app
 
 import di.app.AppComponent
-import activity.LoginActivity
+import presentation.login.LoginActivity
 import di.app.DaggerAppComponent
 import javax.inject.Inject
 

@@ -4,7 +4,7 @@ import app.App
 import dagger.Module
 import dagger.Provides
 import data.api.OAuthApi
-import presentation.LoginService
+import presentation.login.LoginService
 
 @Module
 class AppModule(
