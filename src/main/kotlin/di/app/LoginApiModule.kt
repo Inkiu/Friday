@@ -4,6 +4,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
+import data.EventConfigProvider
 import data.TokenProvider
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -11,7 +12,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import data.api.BaseUrl
+import data.api.EventConfigApi
 import data.api.OAuthApi
+import data.model.EventConfig
 import javax.inject.Singleton
 
 @Module
@@ -25,8 +28,20 @@ class LoginApiModule {
 
     @Provides
     @Singleton
+    fun provideEventConfigApi(baseUrl: BaseUrl): EventConfigApi {
+        return createRetrofit(baseUrl = baseUrl.event, timeout = 10L).create(EventConfigApi::class.java)
+    }
+
+    @Provides
+    @Singleton
     fun provideTokenProvider(): TokenProvider {
         return TokenProvider()
+    }
+
+    @Provides
+    @Singleton
+    fun provideEventConfigProvider(): EventConfigProvider {
+        return EventConfigProvider()
     }
 
     private fun createRetrofit(baseUrl: String, timeout: Long): Retrofit {

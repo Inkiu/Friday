@@ -4,11 +4,9 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
+import data.EventConfigProvider
 import data.TokenAuthenticator
-import data.api.AuthApi
-import data.api.BaseUrl
-import data.api.EdgeApi
-import data.api.EventApi
+import data.api.*
 import di.PerLogin
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -42,10 +40,12 @@ class ApiModule {
 
     @Provides
     @PerLogin
-    fun provideEventApi(baseUrl: BaseUrl, tokenAuthenticator: TokenAuthenticator): EventApi {
+    fun provideEventApi(baseUrl: BaseUrl,
+                        eventConfigProvider: EventConfigProvider,
+                        tokenAuthenticator: TokenAuthenticator): EventApi {
         return createRetrofit(
             baseUrl = baseUrl.event,
-            timeout = 30L,
+            timeout = (eventConfigProvider.getEventWaitTime()?.toLong() ?: 30L) + 5L,
             authenticator =  tokenAuthenticator
         ).create(EventApi::class.java)
     }
