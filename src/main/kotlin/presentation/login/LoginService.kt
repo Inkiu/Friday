@@ -4,7 +4,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import data.api.OAuthApi
 import data.model.Auth
-import domain.model.Token
+import data.model.Token
 import java.io.File
 import java.lang.IllegalStateException
 

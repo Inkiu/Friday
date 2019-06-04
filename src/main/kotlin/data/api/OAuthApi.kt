@@ -1,7 +1,7 @@
 package data.api
 
 import kotlinx.coroutines.Deferred
-import domain.model.Token
+import data.model.Token
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST

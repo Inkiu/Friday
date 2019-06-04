@@ -1,6 +1,6 @@
 package data
 
-import domain.model.Token
+import data.model.Token
 
 class TokenProvider {
 
