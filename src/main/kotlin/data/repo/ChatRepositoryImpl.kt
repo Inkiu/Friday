@@ -1,6 +1,7 @@
 package data.repo
 
 import data.api.EdgeApi
+import data.model.ChatRequest
 import domain.model.ChatContent
 import data.model.chat.Chat
 import domain.repo.ChatRepository
@@ -17,6 +18,11 @@ class ChatRepositoryImpl (
             chatSummary
         }
         return chat.convert(roomIndex, chatIndex, userIndex)
+    }
+
+    override suspend fun postNormalChat(teamIndex: Long, roomIndex: Long, content: String): Long {
+        val chatRequest = ChatRequest(content, null)
+        return edgeApi.postMessage(roomIndex = roomIndex, type = 1, requestBody = chatRequest).await()
     }
 
     private suspend fun getChat(roomIndex: Long, chatIndex: Long): Chat {

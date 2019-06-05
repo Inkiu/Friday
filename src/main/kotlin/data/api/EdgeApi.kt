@@ -25,6 +25,6 @@ interface EdgeApi {
         @Path("room") roomIndex: Long,
         @Path("type") type: Int = 1, // 1 : 일반, 2 : 파일
         @Body requestBody: ChatRequest
-    ): Deferred<Chat>
+    ): Deferred<Long>
 }
 
