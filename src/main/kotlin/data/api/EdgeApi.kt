@@ -2,6 +2,7 @@ package data.api
 
 import data.model.ChatRequest
 import data.model.chat.Chat
+import data.model.chat.ChatResult
 import kotlinx.coroutines.Deferred
 import retrofit2.http.*
 
@@ -25,6 +26,6 @@ interface EdgeApi {
         @Path("room") roomIndex: Long,
         @Path("type") type: Int = 1, // 1 : 일반, 2 : 파일
         @Body requestBody: ChatRequest
-    ): Deferred<Long>
+    ): Deferred<ChatResult>
 }
 

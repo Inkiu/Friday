@@ -22,7 +22,7 @@ class ChatRepositoryImpl (
 
     override suspend fun postNormalChat(teamIndex: Long, roomIndex: Long, content: String): Long {
         val chatRequest = ChatRequest(content, null)
-        return edgeApi.postMessage(roomIndex = roomIndex, type = 1, requestBody = chatRequest).await()
+        return edgeApi.postMessage(roomIndex = roomIndex, type = 1, requestBody = chatRequest).await().msgIndex
     }
 
     private suspend fun getChat(roomIndex: Long, chatIndex: Long): Chat {
