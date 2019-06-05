@@ -2,7 +2,7 @@ package data.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import domain.model.chat.ChatExtra
+import data.model.chat.ChatExtra
 
 @JsonClass(generateAdapter = true)
 data class ChatRequest(

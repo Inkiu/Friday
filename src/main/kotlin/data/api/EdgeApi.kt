@@ -1,8 +1,7 @@
 package data.api
 
 import data.model.ChatRequest
-import domain.model.chat.Chat
-import domain.model.chat.ChatLong
+import data.model.chat.Chat
 import kotlinx.coroutines.Deferred
 import retrofit2.http.*
 

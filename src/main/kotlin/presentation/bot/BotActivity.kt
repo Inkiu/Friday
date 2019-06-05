@@ -27,7 +27,7 @@ class BotActivity(
             val channel = getEventStream.get(CoroutineScope(coroutineContext))
             while(true) {
                 val chatEvent = channel.receive()
-                println(getChat.get(GetChat.Param(chatEvent.teamIndex, chatEvent.roomIndex, chatEvent.chatIndex)))
+                println(getChat.get(GetChat.Param(chatEvent.teamIndex, chatEvent.roomIndex, chatEvent.chatIndex, chatEvent.userIndex)))
             }
         }
     }
