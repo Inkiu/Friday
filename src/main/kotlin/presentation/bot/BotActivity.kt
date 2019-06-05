@@ -16,6 +16,7 @@ class BotActivity(
 
     @Inject lateinit var getEventStream: GetEventStream
     @Inject lateinit var getChat: GetChat
+    @Inject lateinit var botEventDispatcher: BotEventDispatcher
 
     init {
         app.appComponent.plus().inject(this)
@@ -27,7 +28,8 @@ class BotActivity(
             val channel = getEventStream.get(CoroutineScope(coroutineContext))
             while(true) {
                 val chatEvent = channel.receive()
-                println(getChat.get(GetChat.Param(chatEvent.teamIndex, chatEvent.roomIndex, chatEvent.chatIndex, chatEvent.userIndex)))
+                val botChat = getChat.get(GetChat.Param(chatEvent.teamIndex, chatEvent.roomIndex, chatEvent.chatIndex, chatEvent.userIndex))
+                botEventDispatcher.onChat(botChat)
             }
         }
     }

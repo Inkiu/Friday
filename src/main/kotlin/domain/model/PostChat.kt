@@ -1,8 +1,9 @@
 package domain.model
 
 import domain.repo.ChatRepository
+import javax.inject.Inject
 
-class PostChat(
+class PostChat @Inject constructor(
     private val chatRepository: ChatRepository
 ) {
     suspend fun get(param: Param): Long {

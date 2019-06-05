@@ -12,7 +12,7 @@ class ChatRepositoryImpl (
 
     override suspend fun getBotChat(teamIndex: Long, roomIndex: Long, chatIndex: Long, userIndex: Long): ChatContent {
         val chatSummary = getChat(roomIndex, chatIndex)
-        val chat = if (chatSummary.contentLength != chatSummary.content.length) {
+        val chat = if (chatSummary.isSummarized()) {
             chatSummary.copy(content = getLongChat(roomIndex, chatIndex))
         } else {
             chatSummary
@@ -44,7 +44,7 @@ class ChatRepositoryImpl (
             chatIndex,
             userIndex,
             type,
-            content,
+            content ?: "",
             isInit(),
             file
         )
