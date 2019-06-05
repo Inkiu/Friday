@@ -7,3 +7,6 @@
 /captures
 *.iml
 .idea
+
+# auth files
+src/main/resources/auth
