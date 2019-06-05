@@ -4,9 +4,10 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import data.api.EventConfigApi
 import data.api.OAuthApi
-import data.model.Auth
+import data.model.auth.Auth
 import data.model.EventConfig
-import data.model.Token
+import data.model.auth.Team
+import data.model.auth.Token
 import kotlinx.coroutines.Deferred
 import java.io.File
 import java.lang.IllegalStateException

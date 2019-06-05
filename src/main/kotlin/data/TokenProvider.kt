@@ -1,6 +1,6 @@
 package data
 
-import data.model.Token
+import data.model.auth.Token
 
 class TokenProvider {
 

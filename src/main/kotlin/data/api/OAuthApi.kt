@@ -1,7 +1,7 @@
 package data.api
 
 import kotlinx.coroutines.Deferred
-import data.model.Token
+import data.model.auth.Token
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -24,5 +24,4 @@ interface OAuthApi {
         @Field("grant_type") grantType: String,
         @Field("refresh_token") refreshToken: String
     ): Deferred<Token>
-
 }
