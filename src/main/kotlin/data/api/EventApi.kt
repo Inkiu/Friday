@@ -1,7 +1,6 @@
 package data.api
 
-import domain.model.event.Event
-import domain.model.event.Events
+import data.model.event.Events
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 

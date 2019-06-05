@@ -1,12 +1,13 @@
 package domain.usecase
 
-import domain.model.event.ChatEvent
+import domain.model.ChatEvent
 import domain.repo.EventRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class GetEventStream @Inject constructor(
@@ -17,11 +18,9 @@ class GetEventStream @Inject constructor(
         return scope.produce {
             while(isActive) {
                 val result = runCatching {
-                    eventRepository.getEvents().events.forEach { event ->
-                        if (event.isChat()) {
-                            println(event)
-                            send(event.chatEvent!!)
-                        }
+                    eventRepository.getChatEvents().forEach {
+                        println(it)
+                        send(it)
                     }
                 }
                 if (result.isFailure) {

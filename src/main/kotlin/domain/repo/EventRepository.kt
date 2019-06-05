@@ -1,8 +1,7 @@
 package domain.repo
 
-import domain.model.event.Event
-import domain.model.event.Events
+import domain.model.ChatEvent
 
 interface EventRepository {
-    suspend fun getEvents(): Events
+    suspend fun getChatEvents(): List<ChatEvent>
 }
