@@ -2,6 +2,7 @@ package presentation.bot
 
 import app.App
 import app.Phase
+import domain.usecase.GetChat
 import domain.usecase.GetEventStream
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -14,6 +15,7 @@ class BotActivity(
     override val coroutineContext: CoroutineContext get() = botContext
 
     @Inject lateinit var getEventStream: GetEventStream
+    @Inject lateinit var getChat: GetChat
 
     init {
         app.appComponent.plus().inject(this)
@@ -23,7 +25,10 @@ class BotActivity(
     override fun start() {
         launch {
             val channel = getEventStream.get(CoroutineScope(coroutineContext))
-            while(true) println("Received " + channel.receive())
+            while(true) {
+                val chatEvent = channel.receive()
+                println(getChat.get(GetChat.Param(chatEvent.teamIndex, chatEvent.roomIndex, chatEvent.chatIndex)))
+            }
         }
     }
 

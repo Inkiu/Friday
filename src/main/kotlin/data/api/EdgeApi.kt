@@ -2,6 +2,7 @@ package data.api
 
 import data.model.ChatRequest
 import domain.model.chat.Chat
+import domain.model.chat.ChatLong
 import kotlinx.coroutines.Deferred
 import retrofit2.http.*
 
@@ -16,7 +17,7 @@ interface EdgeApi {
     @GET("v3/message/{roomIndex}/{messageIndex}")
     fun getLongMessage(
         @Path("roomIndex") roomIndex: Long,
-        @Path("messageIndex") messageIndex: Long
+        @Path("messageIndex") chatIndex: Long
     ): Deferred<String>
 
     @POST("v3/message/{room}/{type}")
