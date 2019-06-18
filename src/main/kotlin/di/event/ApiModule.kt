@@ -51,10 +51,26 @@ class ApiModule {
         ).create(EventApi::class.java)
     }
 
-    private fun createRetrofit(baseUrl: String, timeout: Long, authenticator: TokenAuthenticator): Retrofit {
+
+    @Provides
+    @PerLogin
+    fun provideFileApi(baseUrl: BaseUrl, tokenAuthenticator: TokenAuthenticator): FileApi {
+        return createRetrofit(
+            baseUrl = baseUrl.file,
+            timeout = 20L,
+            authenticator = tokenAuthenticator,
+            logLevel = HttpLoggingInterceptor.Level.HEADERS
+        ).create(FileApi::class.java)
+    }
+
+    private fun createRetrofit(baseUrl: String,
+                               timeout: Long,
+                               authenticator: TokenAuthenticator,
+                               logLevel: HttpLoggingInterceptor.Level? = null
+    ): Retrofit {
         val logging = HttpLoggingInterceptor {
             println("Retrofit : $it")
-        }.apply { level = HttpLoggingInterceptor.Level.BODY }
+        }.apply { level = logLevel ?: HttpLoggingInterceptor.Level.BODY }
 
         val httpClientBuilder = OkHttpClient.Builder()
             .addInterceptor(logging)

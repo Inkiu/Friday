@@ -3,6 +3,7 @@ package di.app
 import dagger.Module
 import dagger.Provides
 import data.api.BaseUrl
+import di.ImageFolder
 
 @Module
 class ConfigModule {
@@ -20,5 +21,11 @@ class ConfigModule {
     @Provides
     fun provideAuthFilePath(): String {
         return "src/main/resources/auth/teamup_auth.json"
+    }
+
+    @Provides
+    @ImageFolder
+    fun provideImageFolder(): String {
+        return "src/main/resources/image"
     }
 }
